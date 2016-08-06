@@ -1,0 +1,9 @@
+name: 衆神的黃昏
+url: http://leonhover.github.io
+description: 专注于Android移动开发，暴雪电影娱乐公司脑残粉
+
+permalink: /:year/:month/:day/:title/
+paginate: 10
+
+gems: [jekyll-paginate]
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
