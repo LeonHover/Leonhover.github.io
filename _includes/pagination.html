@@ -1,0 +1,21 @@
+<div class="pagination">
+  <div class="previous">
+    {% if paginator.previous_page %}
+      <a href="{{ paginator.previous_page_path }}">&laquo; 上一篇</a>
+    {% else %}
+      <span>&laquo; 上一篇</span>
+    {% endif %}
+  </div>
+
+  <div class="center">
+    <span class="page_number">{{ paginator.page }} from {{ paginator.total_pages }}</span>
+  </div>
+
+  <div class="next">
+    {% if paginator.next_page %}
+      <a href="{{ paginator.next_page_path }}">下一篇 &raquo;</a>
+    {% else %}
+      <span>下一篇 &raquo;</span>
+    {% endif %}
+  </div>
+</div>

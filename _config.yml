@@ -1,9 +1,37 @@
-name: 衆神的黃昏
-url: http://leonhover.github.io
-description: 专注于Android移动开发，暴雪电影娱乐公司脑残粉
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
 
-permalink: /:year/:month/:day/:title/
-paginate: 10
+# Site settings
+title: 众神的黄昏
+email: leonhover@gmail.com
+description: 专注于Android移动开发，暴雪游戏迷。
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://leonhover.github.io" # the base hostname & protocol for your site
 
-gems: [jekyll-paginate]
-exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+github_username:  leonhover
+google_analytic_id:
+disqus_name:
+
+permalink: /:categories/:title
+paginate: 5
+paginate_path: /page/:num
+
+# jekyll seo tag settings
+logo: assets/images/avatar.jpeg
+twitter:
+  username: leonhover
+
+# Build settings
+markdown: kramdown
+sass:
+  style: compressed
+
+gems:
+  - jekyll-sitemap
+  - jekyll-paginate
+  - jekyll-redirect-from
+  - jekyll-seo-tag
