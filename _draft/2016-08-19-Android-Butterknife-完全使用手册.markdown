@@ -1,31 +1,33 @@
 ---
 layout: post
-title:  "Android ButterKnife 完全使用手册"
+title:  "优雅地方式编写Android中View以及其Listener代码——ButterKnife 完全使用手册"
 date:   2016-08-19 09:36:25
 categories: Android 开源 Library
 ---
 
 
-### ButterKnife——Android开发中必用的库
-
-#### 一、简介
+### 一、简介
   ButterKnife是现在很多Android应用开发者都会使用的开源库，它可以将你从冗余、模板式的`findViewById(int resId)`、`setOnClickListener`、`setOnItemClickLister`等代码中解放出来，极大地提高编程效率。不同于其他依赖注入的框架，它只针对Android的View的字段和方法进行绑定。
 
   ![ButterKnife图标][ButterKnife图标]
 
-#### 二、使用配置
-  在工程级的`build.gradle`中引入`android-apt`插件:
+### 二、使用配置
+
+  在工程级的`build.gradle`中引入`android-apt`插件
+
   ```
   buildscript {
-  repositories {
-    mavenCentral()
-   }
-  dependencies {
-    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    repositories {
+      mavenCentral()
+     }
+    dependencies {
+      classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
   }
-}
   ```
+
   在模块级的`build.gradle`中应用`android-apt`插件并添加ButterKnife的依赖:
+
   ```
   apply plugin: 'android-apt'
 
@@ -43,13 +45,15 @@ dependencies {
 
   注意：文章中`butterknife`、`butterknife-compiler`以及`android-apt`的版本是当时的最新版本，请在[The Central Repository][mavenCentral]上查找最新的版本。
 
-#### 三、Show me the code
+### 三、Show me the code
 
-##### 绑定控件或资源
+#### 绑定控件或资源
 
   对控件或资源字段添加`@BindView(View的Id)`、`@BindString(String的ID)`等注解，ButterKnife就会找到这些字段并自动注入且转换成对应的在布局文件的视图控件或资源。
 
   Activity使用ButterKnifer的场景：
+
+
   ```
   public class ExampleAcitivity extends AppCompatActivity {
     //视图控件绑定
@@ -83,6 +87,7 @@ dependencies {
   ```
 
   Fragment使用ButterKnife的场景：
+
   ```
   public class FancyFragment extends Fragment {
     @BindView(R.id.button1) Button button1;
@@ -130,11 +135,12 @@ dependencies {
   }
 }
   ```
+
 另外ButterKnife还提供其他的绑定API：
   * 使用Activity作为视图根布局来绑定任何实例。如果你使用像MVC的开发模式，你可以使用它的activity同`ButterKnife.bind(this,activity)`来绑定controller。
   * 使用`ButterKnife.bind(this)`来绑定视图的子视图到成员变量字段。如果你在一个布局中使用 `<merge>`标签，你可以在自定义视图的构造方法后立即调用`bind方法`。另一种方式，在XML中定义的视图可以在`onFinishInflate()`中使用。
 
-##### 视图列表
+#### 视图列表
 
 你可以集合多个视图到列表或数组中。
 
@@ -163,28 +169,36 @@ static final ButterKnife.Setter<View, Boolean> ENABLED = new ButterKnife.Setter<
   }
 };
 ```
+
 Android中视图的`Property`也可以在`apply`方法中使用。
+
 ```
 ButterKnife.apply(nameViews,View.ALPHA,0.0f);
 ```
 
-##### 绑定事件监听器
+
+#### 绑定事件监听器
 
 监听器也可以自动设置到方法上。
+
 ```
 @OnClick(R.id.submit)
 public void submit(View view){
   // TODO submit action.
 }
 ```
+
 监听器的所有方法参数都是可选的。
+
 ```
 @OnClick(R.id.submit)
 public void submit(){
   // TODO submit action.
 }
 ```
+
 定义一个特定类型的参数，它会被自动转换。
+
 ```
 @OnClick(R.id.submit)
 public void sayHi(Button button){
@@ -193,6 +207,7 @@ public void sayHi(Button button){
 ```
 
 指定多个视图ID绑定到一个通常的事件处理上。
+
 ```
 @OnClick({ R.id.door1, R.id.door2, R.id.door3 })
 public void pickDoor(DoorView door) {
@@ -205,6 +220,7 @@ public void pickDoor(DoorView door) {
 ```
 
 自定义视图可以绑定他们自己的监听器，而不用指定一个视图ID。
+
 ```
 public class FancyButton extends Button {
   @OnClick
@@ -214,9 +230,10 @@ public class FancyButton extends Button {
 }
 ```
 
-##### 重置绑定
+#### 重置绑定
 
 Fragment与Activity有不同的视图生命周期。在`onCreateView`中绑定Fragment,在`onDestroyView`中置空视图引用。ButterKnife在你调用`bind`方法时候返回一个`Unbinder`的实例对象，可以用来做置空操作。在推荐的生命周期毁掉中调用它的`unbind`方法即可。
+
 ```
 public class FancyFragment extends Fragment {
   @BindView(R.id.button1) Button button1;
@@ -237,11 +254,12 @@ public class FancyFragment extends Fragment {
 }
 ```
 
-##### 可选的绑定
+#### 可选的绑定
 默认地情况下，都需要视图或资源绑定以及监听器绑定。如果目标视图不能找到，就会抛出一个异常。
 为了抑制这种情况发生，可以创建一个可选绑定，添加一个`@Nullable`的注解到字段上或在方法上添加`@Optional`注解。
 
 记住：`@Nullable`注解可以用在任何字段域。[Androids' "support-annotations" library][support-annotations]鼓励使用`@Nullable`注解。
+
 ```
 @Nullable @BindView(R.id.might_not_be_there) TextView mightNotBeThere;
 
@@ -250,8 +268,9 @@ public class FancyFragment extends Fragment {
 }
 ```
 
-##### 多方法监听器
+#### 多方法监听器
 那些有多个回调方法的监听器对应的方法注解可以用来绑定它们其中的任何一个。每个注解都有一个默认的它绑定的回调方法。使用`callback`参数来指定备用的回调。
+
 ```
 @OnItemSelected(R.id.list_view)
 void onItemSelected(int position) {
@@ -263,8 +282,10 @@ void onNothingSelected() {
   // TODO ...
 }
 ```
-##### 额外补充
+
+#### 额外补充
 此外还包括了`findById`方法，简化在`View`、`Activity`、或`Diaolog`上find控件的代码实现。它使用泛型来推断返回类型并自动转换。
+
 ```
 View view = LayoutInflater.from(context).inflate(R.layout.thing, null);
 TextView firstName = ButterKnife.findById(view, R.id.first_name);
