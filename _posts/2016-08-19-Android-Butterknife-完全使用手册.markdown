@@ -139,8 +139,10 @@ categories: Android 开源 Library
 {% endhighlight %}
 
 另外ButterKnife还提供其他的绑定API：
-  * 使用Activity作为视图根布局来绑定任何实例。如果你使用像MVC的开发模式，你可以使用它的activity同`ButterKnife.bind(this,activity)`来绑定controller。
-  * 使用`ButterKnife.bind(this)`来绑定视图的子视图到成员变量字段。如果你在一个布局中使用 `<merge>`标签，你可以在自定义视图的构造方法后立即调用`bind方法`。另一种方式，在XML中定义的视图可以在`onFinishInflate()`中使用。
+
+* 使用Activity作为视图根布局来绑定任何实例。如果你使用像MVC的开发模式，你可以使用它的activity同`ButterKnife.bind(this,activity)`来绑定controller。
+
+* 使用`ButterKnife.bind(this)`来绑定视图的子视图到成员变量字段。如果你在一个布局中使用 `<merge>`标签，你可以在自定义视图的构造方法后立即调用`bind方法`。另一种方式，在XML中定义的视图可以在`onFinishInflate()`中使用。
 
 #### 视图列表
 
