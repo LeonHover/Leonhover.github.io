@@ -1,0 +1,39 @@
+---
+layout: post
+title:  "Android开发中遇到的奇葩问题汇总"
+date:   2016-09-27 00:16:25
+categories: Android Api Development
+---
+
+* startActivityForResult后，不能正确接收到onActivityResult()的回调
+问题：startActivityForResult后就会立即执行onActivityResult方法，且resultCode值永远是Cancel。
+原因：Activity有一种launchMode为```singleTask```。如果被启动的Activity就是采用了这种launchMode，可能会在startActivityForResult后，按back键返回，不会返回到startActivityForResult调用的Activity上。所以Android默认就立即执行了onActivityResult，且resultCode为cancel。
+
+* Html.fromHtml的换行符处理
+问题：String中的```\n```，经过Html.fromHtml处理后会变成空格。
+这个问题其实不算奇葩问题，只是自己写java写惯了，没有注意html的符号转换问题。
+原因：Html语言中的换行符为```<br>```，所有如果有```\n```符号的话，需要先用```<br>```替换掉，才能正确显示换行。
+
+* MediaCodec录制视频效率问题
+问题：使用MediaCode结合GLSurfaceVie录制视频，很容易出现OpenGL的操作失败或异常造成应用崩溃或卡死的问题。
+原因：GLSurfaceVie的onDrawFrame的回调每次都调用MediaCodec去编码，由于MediaCodec的编码效率在某些机器上不能满足要求，所以要onDrawFrame中加以限制，具体限制的值可以根据视频的FramentRate进行设置。减少编码压力，提高录制视频效率和结局一些难以理解的卡死或崩溃的问题。
+
+* 应用发生一些View或者Fragment消失了
+问题：应用的View或Fragment刚启动的时候还在，但运行一会后就会消失，再也显示不出来，其中并没有对这些Widget设定Visible的操作。
+原因：在非UI线程做了更新UI的操作，但是没有发生崩溃。这是由于更新UI视图的操作发生在Binder机制产生的线程中，由于这些线程既不属于App的主进程或后台Service进程，所以应用不会因为```ViewRootImpl$CalledFromWrongThreadException```的异常发生停止运行的崩溃提示。但具体Binder机制产生的线程更新造成View消失的根本原因还没有查明，不过修改方法已经确定，进更新UI视图逻辑放到UI线程后，不再有这样的问题发生。
+
+* 操作文件失败——```ErrnoException: open failed: ENOENT (No such file or directory)```
+问题：调用createNewFile方法时，发生了这种异常，操作文件失败。
+状态：还没解决，也没找到问题原因。
+
+* ```TextView```的```lineSpacingExtra```问题
+问题：在不同设备上TextView设置了```lineSpacingExtra```的属性，有些表现正常，有些会在TextView的底部多出一些间隔空间。
+原因：Android Api < 21的版本上TextView设置了```lineSpacingExtra```的属性，会在底部多添加一条```lineSpacingExtra```大小的间隔，而在Api >= 21的版本上不会额外添加这样的间隔。所以解决方法就是在不同版本中使用不同的values的dimen。
+警告：国内很多Rom都是自定义的Android系统，这些设备在Api >= 21 && Api < 23的版本上表现不一，有些仍旧会添加，有写又不会，所以在这些Api版本的设备无法彻底解决这个问题。
+
+* Canvas的clip相关操作会有锯齿
+问题：Canvas进行clip选择区域后，再绘制弧形，圆形等等会出现锯齿。
+状态：无解。
+备选：可以在clip外再绘制一个1px的区域框，颜色里clip内的颜色相同，可以看上去好一些。
+
+#### To be continue ...
