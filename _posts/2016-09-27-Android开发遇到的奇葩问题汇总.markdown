@@ -36,4 +36,8 @@ categories: Android Api Development
 状态：无解。
 备选：可以在clip外再绘制一个1px的区域框，颜色里clip内的颜色相同，可以看上去好一些。
 
+* MP4文件moov后置
+问题：MP4文件moov后置，会造成网页播放上需要加载完才能正常播放。
+原因：moov位于了mdata后面，mdata是具体的媒体数据比较大，而moov媒体参数数据在后面，在一些播放器上可能会下载整个视频文件后才能知道媒体信息。通过转码工具将moov前置解决此问题。
+
 #### To be continue ...
