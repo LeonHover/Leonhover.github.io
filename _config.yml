@@ -23,12 +23,12 @@ paginate_path: /page/:num
 # jekyll seo tag settings
 logo: assets/images/avatar.jpeg
 twitter:
-  username: leonhover
+username: leonhover
 
 # Build settings
 markdown: kramdown
 sass:
-  style: compressed
+style: compressed
 
 gems:
   - jekyll-sitemap
