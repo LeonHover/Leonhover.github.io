@@ -5,7 +5,7 @@ date:   2017-10-10 14:33:25
 categories: ElementaryOS Linux
 ---
 
-#Elementary OS Loki 安装后需要做的事情
+# Elementary OS Loki 安装后需要做的事情
 
 #### 1. `add-apt-repository` 命令未找到
 新装的系统需要安装一些第三方的软件源，然而会出现`add-apt-repository`命令未找到，这就需要我们安装`software-properties-common`。
