@@ -24,6 +24,7 @@ sudo apt install software-properties-common
   ```
   安装所缺失的依赖库。
 * 可以正常使用搜狗输入法了。
+* 默认带有几个皮肤，但是都不好看。可以在[皮肤下载页面](http://pinyin.sogou.com/skins/)，挑选自己中意的输入法皮肤，下载下来的皮肤文件为*.ssf，直接运行就可以安装上去了。
 
 #### 3. 常用软件安装
 参考步骤2的方法，安装其他常用软件：
@@ -74,7 +75,7 @@ npm install && npm start
 #### 7. 商店软件
 这种安装只需要在软件商店中搜索，点击安装即可。
 * Chromium——信仰浏览器
-* FireFox——好用快读的浏览器
+* FireFox——好用快速的浏览器
 * uGet——下载神器，最高可设置16线程下载，速度非常非常快
 * FileZilla——ftp工具
 * GHex——二进制文件查看器
