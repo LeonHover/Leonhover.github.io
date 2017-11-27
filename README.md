@@ -1,4 +1,5 @@
-title: 众神的黄昏
-email: leonhover@gmail.com
-description: 专注于Android移动开发，暴雪游戏迷。
-url: "http://leonhover.github.io" # the base hostname & protocol for your site
+# Leonhover.github.io
+
+Personal blog
+
+jekyll theme:[easybook](http://jekyllthemes.org/themes/easybook/).

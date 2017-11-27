@@ -1,37 +1,36 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
-
 # Site settings
-title: 众神的黄昏
+title: Leonhover的博客
+url: "http://leonhover.github.io"    # the protocol and hostname of your site, eg. `http://laobubu.github.io`
+baseurl: '' # the prefix of your site uri, eg. `/jekyll-theme-EasyBook` or just one slash `/`
+timezone: Asia/Shanghai
+description: >
+  Leonhover 's pernal blog.
+
+# Your information
 email: leonhover@gmail.com
-description: 专注于Android移动开发，暴雪游戏迷。
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://leonhover.github.io" # the base hostname & protocol for your site
-
+author: leonhover
+avatar: "https://avatars1.githubusercontent.com/u/4222099?s=400&u=ec7ae7ae5335c359f1db9b6ce663d26f17f6e91e&v=4"
+profile: Google、Android、暴雪的粉.
+# twitter_username: leonhover
 github_username:  leonhover
-google_analytic_id:
-disqus_name:
 
-permalink: /:categories/:title
-paginate: 5
-paginate_path: /page/:num
+# Comment Service (Disqus or 多说)
+#  choose one and un-comment the line to active it
+disqus_shortname: leonhover   # get one: https://disqus.com/admin/signup/
 
-# jekyll seo tag settings
-logo: assets/images/avatar.jpeg
-twitter:
-username: leonhover
+permalink: /archivers/:title
+gems:
+ - jekyll-paginate
+ - jekyll-gist
+ - jemoji
 
 # Build settings
-markdown: kramdown
-sass:
-style: compressed
+paginate: 5
+paginate_path: "page:num"
 
-gems:
-  - jekyll-sitemap
-  - jekyll-paginate
-  - jekyll-redirect-from
-  - jekyll-seo-tag
+highlighter: rouge
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
