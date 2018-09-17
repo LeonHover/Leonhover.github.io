@@ -1,0 +1,52 @@
+---
+layout: post
+title:  "Flutter开发环境搭建"
+date:   2018-09-16
+categories: Flutter 移动开发
+---
+
+1. Flutter
+    [Flutter](https://flutter.io/)是Google推出的，可以开发高质量且具有原生交互体验的Android和IOS平台的移动应用开发工具
+
+2. 安装
+    * 在[SDK存档](https://flutter.io/sdk-archive/)中下载最新版本的Flutter SDK
+    * 解压下载的SDK文件到合适的目录
+        ```
+        $cd ~/Tools
+        $tar xf ~/Downloads/flutter_linux_xxx.tar.xz
+        ```
+    * 添加`flutter`命令工具到你的环境变量`PATH`中：
+        ```
+        $export FLUTTER_HOME=[Flutter路径]
+        $export PATH=$PATH:$FLUTTER_HOME/bin
+        ```
+    * 运行`flutter doctor`
+        运行下面的命令来检查是否还需要安装其他依赖完成安装:
+        ```
+        $fultter doctor
+        ```
+        Dart语言的SDK是捆绑在Flutter中的，所以你不必单独安装Dart了。运行上面的命令，会打印当前Flutter开发环境的诊断信息。拿我安装好后的举例:
+        ```
+        Doctor summary (to see all details, run flutter doctor -v):
+        [✓] Flutter (Channel beta, v0.7.3, on Linux, locale zh_CN.UTF-8)
+        [✓] Android toolchain - develop for Android devices (Android SDK 28.0.0)
+        [✓] Android Studio (version 3.1)
+        [!] VS Code (version 1.27.2)
+        [!] Connected devices
+        ! No devices available
+
+        ```
+
+        因为我已经安装好了Android的开发环境，所以在安装过程中遇到的问题是需要安装Android Studio的Flutter和Dart的插件，以及一个`lib32stdc++6.so`.
+
+    * 运行第一个Flutter应用
+        a. 在Android Studio中新建Flutter工程
+        b. 选择Flutter应用作为工程类型，选择下一步
+        c. 点击完成后，等待IDE完成创建
+        d. 点击运行第一个Flutter应用
+        e. Flutter支持热加载，仅仅在没有断开运行连接的情况，直接保存修改就可以直接看到修改后的结果
+
+3. 总结
+    完成以上的步骤，你就成功搭建好了Flutter开发环境。
+    
+
